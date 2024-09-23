@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Generator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="generator.js"></script>    
+</html>
+<body>
+    <!--  
+    Commodore screen: frame is light blue, main area is dark blue, text is light blue on dark blue
+    -->
+    <div class="commodore">
+        <div class="frame" >
+            <div class="main" >
+<pre>
+*** COMMODORE 64 BASIC V2 ***
+64K RAM SYSTEM 38911 BASIC BYTES FREE
+READY. 
+</pre>
+<pre class="new-button">[NEW QUESTION] &lt;-- click</pre>
+<pre>
+<span class="output-span"></span><span class="result-span"></span><span class="cursor">_</span>
+
+</pre>
+<input class="input" type="text" id="input" value="" placeholder="?"><pre class="enter-button">[ENTER] &lt;-- click</pre>
+</div>
+            <h3>Unit conversion exam</h3>
+            <p>Success rate: <span class="success">0</span> / <span class="total">0</span></p>
+
+        </div>
+    </div>
+
+    <script>
+        initUnitTypeUsage();
+        var difficulty = 12;
+        var success = 0;
+        var total = 0;
+        var generated = 0;
+        var replay = 0;
+        var exam = null;
+        
+        const newButton = document.querySelector('.new-button');
+        const outputSpan = document.querySelector('.output-span');
+        const resultSpan = document.querySelector('.result-span');
+        const cursorSpan = document.querySelector('.cursor');
+        const input = document.getElementById('input');
+        const enterButton = document.querySelector('.enter-button'); 
+        const successSpan = document.querySelector('.success');
+        const totalSpan = document.querySelector('.total');
+
+        input.onfocus = function() {
+            cursorSpan.innerHTML = '';
+        };
+
+        input.onblur = function() {
+            cursorSpan.innerHTML = '_';
+        };
+
+        document.onkeydown = function(e) {
+            // enter key
+            if (e.keyCode === 13) {
+                if (generated !== replay) {
+                    if (input.value === '') {
+                        input.focus();
+                        
+                        
+                    } else {
+                        enterButton.click();
+                    }
+                } else {
+                    newButton.click();
+                }
+                
+            }
+            // number keys
+            if (e.key in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']) {
+                if (document.activeElement.tagName !== 'INPUT') {
+                    input.focus();
+                }
+            }
+        };
+
+        /* disable text selection and allow to click change mouse pointe to pointer */
+        newButton.onmousedown = function() { return false; };
+        newButton.style.cursor = 'pointer';
+
+        newButton.addEventListener('click', function() {
+            exam = getMathExamUnit(difficulty);
+           
+            outputSpan.innerHTML = exam.question;
+            resultSpan.innerHTML = ' '; 
+            generated++;
+            input.value = '';
+
+        });
+
+        enterButton.onmousedown = function() { return false; };
+        enterButton.style.cursor = 'pointer';
+
+        enterButton.addEventListener('click', function() {
+            if (generated !== replay) {
+                replay = generated;
+                total++;
+
+                var result = checkMathExamUnit(exam, input.value);
+                if (result) {
+                    outputSpan.innerHTML = exam.solution;
+                    resultSpan.innerHTML = '  Correct! ';
+                    resultSpan.style.color = "var(--c64-v2-green)";
+                    success++;
+                } else {
+                    outputSpan.innerHTML = exam.solution;
+                    resultSpan.innerHTML = '  Incorrect! ';
+                    resultSpan.style.color = "var(--c64-v2-red)";
+
+                }
+
+                successSpan.innerHTML = success;
+                totalSpan.innerHTML = total;
+
+            }
+
+
+            
+        });
+    </script>
+</body>
+</html>

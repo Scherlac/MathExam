@@ -1,0 +1,166 @@
+
+/* we use commodore 64 theme for the site */
+/* color are available at https://www.c64-wiki.com/wiki/Color */
+/*
+Black	0	0	CTRL  + 1 	144	Zeichensatz1 208.png small square left down	0, 0, 0	#000000
+White
+White	1	1	CTRL  + 2 	5	Zeichensatz1 133.png inverted E	255, 255, 255	#FFFFFF
+Red
+Red	2	2	CTRL  + 3 	28	Zeichensatz1 156.png inverted pound	136, 0, 0	#880000
+Cyan
+Cyan	3	3	CTRL  + 4 	159	Zeichensatz1 223.png Triangle left down	170, 255, 238	#AAFFEE
+Violet
+Violet / purple	4	4	CTRL  + 5 	156	Zeichensatz1 220.png inverted halfchess	204, 68, 204	#CC44CC
+Green
+Green	5	5	CTRL  + 6 	30	Zeichensatz1 158.png inverted arrow up	0, 204, 85	#00CC55
+Blue
+Blue	6	6	CTRL  + 7 	31	Zeichensatz1 159.png inverted arrow left	0, 0, 170	#0000AA
+Yellow
+Yellow	7	7	CTRL  + 8 	158	Zeichensatz1 222.png inverted π	238, 238, 119	#EEEE77
+Orange
+Orange	8	8	C=  + 1 	129	Zeichensatz1 193.png inverted spade	221, 136, 85	#DD8855
+Brown
+Brown	9	9	C=  + 2 	149	Zeichensatz1 213.png inverted 1/4-circle right down	102, 68, 0	#664400
+Lightred
+Light red	10	A	C=  + 3 	150	Zeichensatz1 214.png inverted graphic-X	255, 119, 119	#FF7777
+Darkgrey
+Dark grey / grey 1	11	B	C=  + 4 	151	Zeichensatz1 215.png inverted annulus	51, 51, 51	#333333
+Grey
+Grey 2	12	C	C=  + 5 	152	Zeichensatz1 216.png inverted club	119, 119, 119	#777777
+Lightgreen
+Light green	13	D	C=  + 6 	153	Zeichensatz1 217.png inverted line right	170, 255, 102	#AAFF66
+Lightblue
+Light blue	14	E	C=  + 7 	154	Zeichensatz1 218.png inverted diamonds	0, 136, 255	#0088FF
+Lightgrey
+Light grey / grey 3	15	F	C=  + 8 	155	Zeichensatz1 219.png inverted clubs	187, 187, 187	#BBBBBB
+
+*/
+
+
+:root {
+    --c64-black: #000000;
+    --c64-white: #FFFFFF;
+    --c64-red: #880000;
+    --c64-cyan: #AAFFEE;
+    --c64-violet: #CC44CC;
+    --c64-green: #00CC55;
+    --c64-blue: #0000AA;
+    --c64-yellow: #EEEE77;
+    --c64-orange: #DD8855;
+    --c64-brown: #664400;
+    --c64-lightred: #FF7777;
+    --c64-darkgrey: #333333;
+    --c64-grey: #777777;
+    --c64-lightgreen: #AAFF66;
+    --c64-lightblue: #0088FF;
+    --c64-lightgrey: #BBBBBB;
+}
+
+
+/*
+according to wiki
+
+0	Black	#000000
+1	White	#FFFFFF
+2	Red	#9F4E44
+3	Cyan	#6ABFC6
+4	Purple	#A057A3
+5	Green	#5CAB5E
+6	Blue	#50459B
+7	Yellow	#C9D487
+8	Orange	#A1683C
+9	Brown	#6D5412
+10	Light Red	#CB7E75
+11	Dark-Gray	#626262
+12	Mid-Gray	#898989
+13	Light Green	#9AE29B
+14	Light Blue	#887ECB
+15	Light-Gray	#ADADAD
+
+
+*/
+:root {
+    --c64-v2-black: #000000;
+    --c64-v2-white: #FFFFFF;
+    --c64-v2-red: #9F4E44;
+    --c64-v2-cyan: #6ABFC6;
+    --c64-v2-purple: #A057A3;
+    --c64-v2-green: #5CAB5E;
+    --c64-v2-blue: #50459B;
+    --c64-v2-yellow: #C9D487;
+    --c64-v2-orange: #A1683C;
+    --c64-v2-brown: #6D5412;
+    --c64-v2-lightred: #CB7E75;
+    --c64-v2-darkgrey: #626262;
+    --c64-v2-grey: #898989;
+    --c64-v2-lightgreen: #9AE29B;
+    --c64-v2-lightblue: #887ECB;
+    --c64-v2-lightgrey: #ADADAD;
+
+    --scale-factor: 3;
+    --c64-horizontal-resolution: 320;
+    --c64-vertical-resolution: 200;
+    --c64-aspect-ratio: calc(var(--c64-horizontal-resolution) / var(--c64-vertical-resolution));
+    --c64-font-size: 8;
+    
+    --c64-text-columns: 40;
+    --c64-text-rows: 25;
+
+    --c64-main-width: calc(var(--c64-font-size) * var(--c64-text-columns) * var(--scale-factor));
+    --c64-main-height: calc(var(--c64-font-size) * var(--c64-text-rows) * var(--scale-factor));
+
+
+
+}
+
+
+/* we use 
+        the c64-lightblue as the background color for the frame and 
+        the c64-blue as the background color for the main area */
+
+div.frame {
+    background-color: var(--c64-v2-lightblue);
+    border: 1px solid var(--c64-v2-blue);
+    padding: 0px;
+}
+
+
+div.main {
+    background-color: var(--c64-v2-blue);
+    /* font color is c64-lightblue */
+    color: var(--c64-v2-lightblue);
+    /* font size is 24px consol */
+    font-size: 24px;
+    /* font family is consol */
+    font-family: consol;
+    margin: 80px;
+    height: 600px;
+    width: 960px;
+}
+
+.input {
+    background-color: var(--c64-v2-blue);
+    /* font color is c64-lightblue */
+    color: var(--c64-v2-lightblue);
+    /* font size is 24px consol */
+    font-size: 24px;
+    /* font family is consol */
+    font-family: consol;
+    /* rempve border */
+    border: none;
+    
+}
+.cursor {
+    /* blink */
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+
+}
